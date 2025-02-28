@@ -5,6 +5,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const BACKEND_URL = "https://finance-tracker-bhwn.onrender.com";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +18,7 @@ const Login = () => {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", { email, password });
+      const res = await axios.post("${BACKEND_URL}/auth/login", { email, password });
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard"); // Redirect to Dashboard on success
     } catch (error) {

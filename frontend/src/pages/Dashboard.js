@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import ExpenseModal from "../components/ExpenseModal";
 import ExpenseChart from "../components/ExpenseChart";
 
+const BACKEND_URL = "https://finance-tracker-bhwn.onrender.com";
 
 const Dashboard = () => {
   const [expenses, setExpenses] = useState([]);
@@ -25,7 +26,7 @@ const Dashboard = () => {
       }
 
       try {
-        const res = await axios.get("http://localhost:5000/expenses", {
+        const res = await axios.get(`${BACKEND_URL}/expenses`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setExpenses(res.data);
@@ -64,13 +65,13 @@ const Dashboard = () => {
       
       if (expenseData._id) {
         // ✅ Edit existing expense
-        const res = await axios.put(`http://localhost:5000/expenses/${expenseData._id}`, expenseData, {
+        const res = await axios.put(`${BACKEND_URL}/expenses/${expenseData._id}`, expenseData, {
           headers: { Authorization: `Bearer ${token}` },
         });
         updatedExpenses = expenses.map((exp) => (exp._id === expenseData._id ? res.data : exp));
       } else {
         // ✅ Add new expense
-        const res = await axios.post("http://localhost:5000/expenses", expenseData, {
+        const res = await axios.post("${BACKEND_URL}/expenses", expenseData, {
           headers: { Authorization: `Bearer ${token}` },
         });
         updatedExpenses = [...expenses, res.data];
@@ -89,7 +90,7 @@ const Dashboard = () => {
     if (!token) return;
   
     try {
-      await axios.delete(`http://localhost:5000/expenses/${id}`, {
+      await axios.delete(`${BACKEND_URL}/expenses/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setExpenses(expenses.filter((expense) => expense._id !== id));

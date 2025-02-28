@@ -5,6 +5,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const BACKEND_URL = "https://finance-tracker-bhwn.onrender.com";
+
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +19,7 @@ const Register = () => {
     setError(""); // Clear previous errors
 
     try {
-      await axios.post("http://localhost:5000/auth/register", { name, email, password });
+      await axios.post("${BACKEND_URL}/auth/register", { name, email, password });
       navigate("/"); // Redirect to login after successful registration
     } catch (error) {
       setError(error.response?.data?.message || "Registration failed");
