@@ -142,7 +142,8 @@ const Dashboard = () => {
         {filteredExpenses.length === 0 ? (
           <p className="text-center text-gray-600">No expenses found.</p>
         ) : (
-          <table className="w-full border-collapse border border-gray-300 rounded-lg overflow-hidden">
+          <div className="max-h-80 overflow-y-scroll border border-gray-300 rounded-lg">
+          <table className="w-full border-collapse">
             <thead>
               <tr className="bg-blue-500 text-white">
                 <th className="p-3 border">Amount</th>
@@ -175,7 +176,7 @@ const Dashboard = () => {
               ))}
             </tbody>
           </table>
-          
+          </div>
         )}
         
         {/* Charts Section */}
