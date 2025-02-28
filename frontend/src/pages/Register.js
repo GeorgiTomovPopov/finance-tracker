@@ -19,7 +19,7 @@ const Register = () => {
     setError(""); // Clear previous errors
 
     try {
-      await axios.post("${BACKEND_URL}/auth/register", { name, email, password });
+      await axios.post('${BACKEND_URL}/auth/register', { name, email, password });
       navigate("/"); // Redirect to login after successful registration
     } catch (error) {
       setError(error.response?.data?.message || "Registration failed");
