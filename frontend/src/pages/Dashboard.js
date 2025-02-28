@@ -26,7 +26,7 @@ const Dashboard = () => {
       }
 
       try {
-        const res = await axios.get(`${BACKEND_URL}/expenses`, {
+        const res = await axios.get('${BACKEND_URL}/expenses', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setExpenses(res.data);
