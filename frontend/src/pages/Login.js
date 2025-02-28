@@ -18,7 +18,7 @@ const Login = () => {
     setError("");
 
     try {
-      const res = await axios.post('${BACKEND_URL}/auth/login', { email, password });
+      const res = await axios.post(`${BACKEND_URL}/auth/login`, { email, password });
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard"); // Redirect to Dashboard on success
     } catch (error) {

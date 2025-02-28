@@ -26,7 +26,7 @@ const Dashboard = () => {
       }
 
       try {
-        const res = await axios.get('${BACKEND_URL}/expenses', {
+        const res = await axios.get(`${BACKEND_URL}/expenses`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setExpenses(res.data);
@@ -71,7 +71,7 @@ const Dashboard = () => {
         updatedExpenses = expenses.map((exp) => (exp._id === expenseData._id ? res.data : exp));
       } else {
         // ✅ Add new expense
-        const res = await axios.post("${BACKEND_URL}/expenses", expenseData, {
+        const res = await axios.post(`${BACKEND_URL}/expenses`, expenseData, {
           headers: { Authorization: `Bearer ${token}` },
         });
         updatedExpenses = [...expenses, res.data];
@@ -102,7 +102,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">💰 My Expenses</h1>
+        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6"><span role="img" aria-label="money">💰</span> My Expenses</h1>
 
         {/* Filters Section */}
         <div className="flex justify-between mb-4">
